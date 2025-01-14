@@ -1,0 +1,21 @@
+[project]
+name = "aqi"
+version = "0.1.0"
+description = "aqi - back end for raspberry pi sensors, libraries & logic"
+authors = [
+    {name = "Calvin", email = "calvinlynch181@outlook.com"}
+]
+readme = "README.md"
+requires-python = ">=3.7,<4.0"
+
+[tool.poetry.dependencies]
+python = ">=3.7,<4.0"
+influx = ">=0.0.1,<0.0.2"
+serial = ">=0.0.97,<0.0.98"
+logging = ">=0.4.9.6,<0.5.0.0"
+reactivex = ">=4.0.4"
+influxdb-client = "^1.48.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,7 +1,7 @@
 import serial
 import struct
 import logging
-from AirQualityRasp.Database.influxdb import InfluxDB
+from Database.influxdb import InfluxDB
 
 class PM7003Sensor:
     def __init__(self, serial_port='/dev/serial0', baudrate=9600):
