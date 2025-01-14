@@ -1,6 +1,6 @@
 from Sensors.particulate_matter import PM7003Sensor
 import time
-pm_sensor = PM7003Sensor
+pm_sensor = PM7003Sensor()
 
 while True:
     # Particulate Matter Sensor

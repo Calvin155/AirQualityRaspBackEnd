@@ -11,7 +11,7 @@ class PM7003Sensor:
 
     def read_data(self):
         try:
-            influx_db = InfluxDB
+            influx_db = InfluxDB()
             if self.ser.readable():
                 data = self.ser.read(32)
                 
