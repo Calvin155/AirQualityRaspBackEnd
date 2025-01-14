@@ -58,9 +58,9 @@ class InfluxDB:
                 "measurement": "air_quality",
                 "tags": {"location": "local"},
                 "fields": {
-                    "PM1": pm1,
-                    "PM2.5": pm2_5,
-                    "PM10": pm10
+                    "PM1": round(pm1,2),
+                    "PM2.5": round(pm2_5,2),
+                    "PM10": round(pm10,2)
                 },
                 "time": timestamp
             }
