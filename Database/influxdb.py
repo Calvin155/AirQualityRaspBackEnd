@@ -1,19 +1,20 @@
 from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
+import logging
 
-url = "http://192.168.1.191:8086"
-token = "uZN6CUu5d5-rLH0eMp21ISKJ0ZU3u3TtYqYshkO0rTx2uxlOl-GAneWoRqUqoYfmZouN0fYOZUaSUq7-7NPMEQ=="
-org = "AQI"
-bucket = "AQIMetrics"
+URL = "http://localhost:8086"
+TOKEN = "uZN6CUu5d5-rLH0eMp21ISKJ0ZU3u3TtYqYshkO0rTx2uxlOl-GAneWoRqUqoYfmZouN0fYOZUaSUq7-7NPMEQ=="
+ORG = "AQI"
+BUCKET = "AQIMetrics"
 
 
 class InfluxDB:
     def __init__(self):
-        self.url = url
-        self.token = token
-        self.org = org
-        self.bucket = bucket
+        self.url = URL
+        self.token = TOKEN
+        self.org = ORG
+        self.bucket = BUCKET
         self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
         self.write_api = self.client.write_api(write_options=SYNCHRONOUS)
         self.query_api = self.client.query_api()
@@ -22,10 +23,11 @@ class InfluxDB:
         try:
             if not self.client:
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
-            print("Connected to InfluxDB.")
+            logging.info("Successfully Connected to Influx Database")
         except Exception as e:
-            print(f"Error connecting to InfluxDB: {e}")
+            logging.error("Error Connecting to Database" + e)
 
+    # Example function on how to write to DB
     def write_data(self, measurement, tags, fields):
         try:
             point = {
@@ -34,14 +36,14 @@ class InfluxDB:
                 "fields": fields
             }
             self.write_api.write(bucket=self.bucket, record=point)
-            print("Data written successfully.")
+            logging.info("Data Written Successfully to Database")
         except Exception as e:
-            print(f"Error writing data: {e}")
+            logging.error("Error Writing Data to Database")
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
+            # Iso time format for writing to influx
             timestamp = datetime.utcnow().isoformat()
-
             point = {
                 "measurement": "air_quality",
                 "tags": {"location": "local"},
@@ -54,12 +56,11 @@ class InfluxDB:
             }
 
             self.write_api.write(bucket=self.bucket, record=point)
-            print(f"Data written successfully: {point}")
+            logging.info("Data Written Successfully to Database")
         except Exception as e:
-            print(f"Error writing PM data: {e}")
+            logging.error("Error writing data to Database" + e)
 
     def close(self):
-        """Close the connection to InfluxDB."""
         if self.client:
             self.client.close()
-            print("Connection closed.")
+            logging.info("Connection to Database Closed")
