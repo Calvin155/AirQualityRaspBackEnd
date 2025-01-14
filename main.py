@@ -8,7 +8,7 @@ while True:
     try:
         pm_sensor.read_data()
         print("Sleep")
-        time.sleep(5)
+        time.sleep(15)
     except Exception as e:
         print("Exception: " + e)
 
