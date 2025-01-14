@@ -59,8 +59,9 @@ class InfluxDB:
                 },
                 "time": timestamp
             }
-
+            print("Data about to be written" + str(pm1))
             self.write_api.write(bucket=self.bucket, record=point)
+            print("Data Written")
             logging.info("Data Written Successfully to Database")
         except Exception as e:
             print("Error writing data to Database" + e)
