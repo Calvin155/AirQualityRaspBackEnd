@@ -6,7 +6,7 @@ import logging
 # Database connections
 
 URL = "http://localhost:8086"
-TOKEN = "uZN6CUu5d5-rLH0eMp21ISKJ0ZU3u3TtYqYshkO0rTx2uxlOl-GAneWoRqUqoYfmZouN0fYOZUaSUq7-7NPMEQ=="
+TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 ORG = "AQI"
 BUCKET = "AQIMetrics"
 
