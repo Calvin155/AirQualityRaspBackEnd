@@ -63,7 +63,7 @@ class InfluxDB:
             self.write_api.write(bucket=self.bucket, record=point)
             logging.info("Data Written Successfully to Database")
         except Exception as e:
-            logging.error("Error writing data to Database" + e)
+            print("Error writing data to Database" + e)
 
     def close(self):
         if self.client:
