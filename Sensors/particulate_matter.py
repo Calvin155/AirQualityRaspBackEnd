@@ -21,9 +21,9 @@ class PM7003Sensor:
                     pm1_0 = struct.unpack('>H', data[10:12])[0]  # PM1.0
                     pm2_5 = struct.unpack('>H', data[12:14])[0]  # PM2.5
                     pm10 = struct.unpack('>H', data[14:16])[0]    # PM10
-                    print("PM 1: " + pm1_0)
-                    print("PM 2.5: " + pm2_5)
-                    print("PM 10: " + pm10)
+                    print("PM 1: " + str(pm1_0))
+                    print("PM 2.5: " + str(pm2_5))
+                    print("PM 10: " + str(pm10))
 
                     if influx_db.connect():
                         print("Wriitng Data to DB")
