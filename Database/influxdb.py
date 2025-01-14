@@ -24,7 +24,7 @@ class InfluxDB:
 
     def connect(self):
         try:
-            if not self.client:  # Only create a new client if self.client doesn't exist
+            if self.client:  # Only create a new client if self.client doesn't exist
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
                 logging.info("Successfully Connected to Influx Database")
                 print("Successfully connected to Influx")  # Optional, if you need console feedback
