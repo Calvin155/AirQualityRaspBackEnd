@@ -3,11 +3,8 @@ import time
 pm_sensor = PM7003Sensor()
 
 while True:
-    # Particulate Matter Sensor
-    print("Attempting to read")
     try:
         pm_sensor.read_data()
-        print("Sleep")
         time.sleep(15)
     except Exception as e:
         print("Exception: " + e)

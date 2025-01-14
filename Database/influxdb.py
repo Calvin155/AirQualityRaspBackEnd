@@ -4,7 +4,6 @@ from datetime import datetime
 import logging
 
 # Database connections
-
 # Local IP address - Database stored on my laptop
 URL = "http://192.168.1.191:8086"
 TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
@@ -34,7 +33,7 @@ class InfluxDB:
 
         except Exception as e:
             logging.error("Error Connecting to Database: " + str(e))  # Ensure exception is stringified
-            print(f"Error Connecting to Database: {e}")  # Optional console feedback for debugging
+
 
 
     # Example function on how to write to DB
@@ -64,9 +63,7 @@ class InfluxDB:
                 },
                 "time": timestamp
             }
-            print("Data about to be written" + str(pm1))
             self.write_api.write(bucket=self.bucket, record=point)
-            print("Data Written")
             logging.info("Data Written Successfully to Database")
         except Exception as e:
             print("Error writing data to Database" + e)
