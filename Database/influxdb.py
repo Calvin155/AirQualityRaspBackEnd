@@ -24,7 +24,9 @@ class InfluxDB:
     def connect(self):
         try:
             if not self.client:
+                print("Writing to Influx")
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
+                print("Wrote to Influx")
             logging.info("Successfully Connected to Influx Database")
         except Exception as e:
             logging.error("Error Connecting to Database" + e)
