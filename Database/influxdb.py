@@ -24,13 +24,18 @@ class InfluxDB:
 
     def connect(self):
         try:
-            if not self.client:
-                print("Writing to Influx")
+            if not self.client:  # Only create a new client if self.client doesn't exist
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
-                print("Wrote to Influx")
-            logging.info("Successfully Connected to Influx Database")
+                logging.info("Successfully Connected to Influx Database")
+                print("Successfully connected to Influx")  # Optional, if you need console feedback
+            else:
+                logging.info("Already connected to Influx Database")
+                print("Already connected to Influx")  # Optional feedback for the user
+
         except Exception as e:
-            logging.error("Error Connecting to Database" + e)
+            logging.error("Error Connecting to Database: " + str(e))  # Ensure exception is stringified
+            print(f"Error Connecting to Database: {e}")  # Optional console feedback for debugging
+
 
     # Example function on how to write to DB
     def write_data(self, measurement, tags, fields):
