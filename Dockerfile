@@ -1,4 +1,4 @@
-FROM arm64v8/debian:bookworm-slim
+FROM arm64v8/debian:bullseye-slim
 WORKDIR /app
 RUN apt-get update && apt-get install -y \
     python3 \
