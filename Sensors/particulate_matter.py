@@ -24,7 +24,7 @@ class PM7003Sensor:
                     print("PM 1: " + str(pm1_0))
                     print("PM 2.5: " + str(pm2_5))
                     print("PM 10: " + str(pm10))
-
+                    print("At DB connect statememnt")
                     if influx_db.connect():
                         print("Wriitng Data to DB")
                         influx_db.write_pm_data(float(pm1_0),float(pm2_5),float(pm10))
