@@ -25,10 +25,10 @@ class PM7003Sensor:
                     print("PM 2.5: " + str(pm2_5))
                     print("PM 10: " + str(pm10))
                     print("At DB connect statememnt")
-                    if influx_db.connect():
-                        print("Wriitng Data to DB")
-                        influx_db.write_pm_data(float(pm1_0),float(pm2_5),float(pm10))
-                        print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10}")
+
+                    print("Wriitng Data to DB")
+                    influx_db.write_pm_data(pm1_0,pm2_5,pm10)
+                    print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10}")
 
             else:
                 print("Error")
