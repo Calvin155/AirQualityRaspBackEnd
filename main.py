@@ -1,10 +1,16 @@
 from Sensors.particulate_matter import PM7003Sensor
+from Database.influxdb import InfluxDB
 import time
 pm_sensor = PM7003Sensor()
+import random
 
+influx_db = InfluxDB()
 while True:
     try:
         pm_sensor.read_data()
+        co2 = random.randint(15,20)
+        temp = random.randint(9,12)
+        humidity = random.randint(50,60)
         time.sleep(15)
     except Exception as e:
         print("Exception: " + e)
