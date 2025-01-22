@@ -68,6 +68,25 @@ class InfluxDB:
         except Exception as e:
             print("Error writing data to Database" + e)
 
+    def write_co2_temp_hum_data(self, co2, temp, humidity):
+        try:
+            # Iso time format for writing to influx
+            timestamp = datetime.utcnow().isoformat()
+            point = {
+                "measurement": "air_quality",
+                "tags": {"location": "local"},
+                "fields": {
+                    "CO2": round(co2,2),
+                    "Temperature": round(temp,2),
+                    "Humidity": round(humidity,2)
+                },
+                "time": timestamp
+            }
+            self.write_api.write(bucket=self.bucket, record=point)
+            logging.info("CO2, Temp & Humidity Data Written Successfully to Database")
+        except Exception as e:
+            print("Error writing data to Database - CO2 Sensor" + e)
+
     def close(self):
         if self.client:
             self.client.close()
