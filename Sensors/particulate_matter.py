@@ -25,7 +25,7 @@ class PM7003Sensor:
                     print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10}")
 
             else:
-                print("Error")
+                print("Error - No Data")
 
         except Exception as e:
             print("Error - PM Sensor: " + e)
