@@ -14,6 +14,7 @@ class PM7003Sensor:
             influx_db = InfluxDB()
             if self.ser.readable():
                 data = self.ser.read(32)
+                print(str(data))
                 
                 if data[0] == 0x42 and data[1] == 0x4D:
                     frame_length = struct.unpack('>H', data[2:4])[0]
