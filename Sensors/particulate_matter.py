@@ -14,14 +14,14 @@ class PM7003Sensor:
             influx_db = InfluxDB()
             if self.ser.readable():
                 data = self.ser.read(32)
-                print(str(data))
                 
                 if data[0] == 0x42 and data[1] == 0x4D:
+                    print("Successfult Com")
                     frame_length = struct.unpack('>H', data[2:4])[0]
                     pm1_0 = struct.unpack('>H', data[10:12])[0]  # PM1.0
                     pm2_5 = struct.unpack('>H', data[12:14])[0]  # PM2.5
                     pm10 = struct.unpack('>H', data[14:16])[0]    # PM10
-
+                    print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10} - before write to DB")
                     influx_db.write_pm_data(pm1_0,pm2_5,pm10)
                     print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10}")
 
