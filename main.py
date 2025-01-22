@@ -12,7 +12,6 @@ while True:
     try:
         pm_sensor.read_data()
         influx_db.write_co2_temp_hum_data(co2, temp, humidity)
-        count = count + 2
         time.sleep(15)
     except Exception as e:
         print("Exception: " + e)
