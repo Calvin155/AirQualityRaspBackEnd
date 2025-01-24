@@ -3,18 +3,25 @@ from Database.influxdb import InfluxDB
 import time
 pm_sensor = PM7003Sensor()
 import random
-
 influx_db = InfluxDB()
-while True:
+
+def mock_co2_data():
     try:
-        pm_sensor.read_data()
         co2 = random.randint(15,20)
         temp = random.randint(9,12)
         humidity = random.randint(50,60)
         influx_db.write_co2_temp_hum_data(co2, temp, humidity)
+    except Exception as e:
+        print(e)
+
+while True:
+    try:
+        pm_sensor.read_data()
+        mock_co2_data()
         time.sleep(15)
     except Exception as e:
         print("Exception: " + e)
+
 
 
 # # For testing without raspberry pi
