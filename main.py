@@ -17,13 +17,13 @@ def mock_co2_data():
 
 # For testing pm sensor on pi & simulating CO2 sensor data
 
-# while True:
-#     try:
-#         pm_sensor.read_data()
-#         mock_co2_data()
-#         time.sleep(15)
-#     except Exception as e:
-#         print("Exception: " + e)
+while True:
+    try:
+        pm_sensor.read_data()
+        mock_co2_data()
+        time.sleep(15)
+    except Exception as e:
+        print("Exception: " + e)
 
 
 
