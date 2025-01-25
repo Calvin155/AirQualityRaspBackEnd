@@ -1,4 +1,4 @@
-FROM --platform=linux/arm64 arm64v8/debian:latest
+FROM arm64v8/debian:latest
 WORKDIR /app
 RUN apt-get update && apt-get install -y \
     python3 \
