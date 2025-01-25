@@ -5,7 +5,8 @@ import logging
 
 # Database connections
 # Local IP address - Database stored on my laptop
-URL = "http://192.168.1.47:8086"
+
+URL = "http://localhost:8086"
 TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 ORG = "AQI"
 BUCKET = "AQIMetrics"

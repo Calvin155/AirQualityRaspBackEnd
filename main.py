@@ -1,9 +1,10 @@
 from Sensors.particulate_matter import PM7003Sensor
 from Database.influxdb import InfluxDB
 import time
-pm_sensor = PM7003Sensor()
+
 import random
 influx_db = InfluxDB()
+pm_sensor = PM7003Sensor()
 
 def mock_co2_data():
     try:
@@ -14,13 +15,15 @@ def mock_co2_data():
     except Exception as e:
         print(e)
 
-while True:
-    try:
-        pm_sensor.read_data()
-        mock_co2_data()
-        time.sleep(15)
-    except Exception as e:
-        print("Exception: " + e)
+# For testing pm sensor on pi & simulating CO2 sensor data
+
+# while True:
+#     try:
+#         pm_sensor.read_data()
+#         mock_co2_data()
+#         time.sleep(15)
+#     except Exception as e:
+#         print("Exception: " + e)
 
 
 
