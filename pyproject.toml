@@ -17,6 +17,7 @@ reactivex = ">=4.0.4"
 influxdb-client = "^1.48.0"
 sensirion-i2c-driver = "^1.0.0"
 sensirion-i2c-scd = "^0.1.2"
+pyserial = "^3.5"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
