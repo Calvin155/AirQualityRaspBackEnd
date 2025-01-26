@@ -2,6 +2,7 @@ from influxdb_client import InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 import logging
+import os
 
 # Database connections
 # Local IP address - Database stored on my laptop
@@ -10,10 +11,10 @@ import logging
 # URL = "http://192.168.1.47:8086"
 # TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 
-URL = "http://192.168.1.35:8086"
-TOKEN = "EqJuxMI2fzKevU3E29AQmWT38LPlU7xZeEUNRrZZukskctofVIo4mSZfs3SXl73Gn3mq44Hf51hzvi_RnJF0Mw=="
-ORG = "AQI"
-BUCKET = "AQIMetrics"
+URL = os.getenv("URL", "http://localhost:8086")
+TOKEN = os.getenv("TOKEN", "")
+ORG = os.getenv("ORG", "AQI")
+BUCKET = os.getenv("BUCKET", "AQIMetrics")
 
 
 class InfluxDB:
@@ -28,20 +29,19 @@ class InfluxDB:
 
     def connect(self):
         try:
-            if self.client:  # Only create a new client if self.client doesn't exist
+            if self.client:
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
                 logging.info("Successfully Connected to Influx Database")
-                print("Successfully connected to Influx")  # Optional, if you need console feedback
+                print("Successfully connected to Influx")
             else:
                 logging.info("Already connected to Influx Database")
-                print("Already connected to Influx")  # Optional feedback for the user
+                print("Already connected to Influx")
 
         except Exception as e:
-            logging.error("Error Connecting to Database: " + str(e))  # Ensure exception is stringified
+            logging.error("Error Connecting to Database: " + str(e))
 
 
 
-    # Example function on how to write to DB
     def write_data(self, measurement, tags, fields):
         try:
             point = {
@@ -56,7 +56,6 @@ class InfluxDB:
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
-            # Iso time format for writing to influx
             timestamp = datetime.utcnow().isoformat()
             point = {
                 "measurement": "air_quality",
@@ -75,7 +74,6 @@ class InfluxDB:
 
     def write_co2_temp_hum_data(self, co2, temp, humidity):
         try:
-            # Iso time format for writing to influx
             timestamp = datetime.utcnow().isoformat()
             point = {
                 "measurement": "air_quality",
