@@ -11,10 +11,10 @@ import os
 # URL = "http://192.168.1.47:8086"
 # TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 
-URL = os.getenv("URL", "http://localhost:8086")
-TOKEN = os.getenv("TOKEN", "")
-ORG = os.getenv("ORG", "AQI")
-BUCKET = os.getenv("BUCKET", "AQIMetrics")
+URL="http://192.168.1.35:8086"
+TOKEN="BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
+ORG="AQI"
+BUCKET="AQIMetrics"
 
 
 class InfluxDB:
