@@ -10,7 +10,7 @@ import logging
 # URL = "http://192.168.1.47:8086"
 # TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 
-URL = "http://localhost:8086"
+URL = "http://192.168.1.35:8086"
 TOKEN = "EqJuxMI2fzKevU3E29AQmWT38LPlU7xZeEUNRrZZukskctofVIo4mSZfs3SXl73Gn3mq44Hf51hzvi_RnJF0Mw=="
 ORG = "AQI"
 BUCKET = "AQIMetrics"
