@@ -16,7 +16,7 @@ class PM7003Sensor:
                 data = self.ser.read(32)
                 
                 if data[0] == 0x42 and data[1] == 0x4D:
-                    print("Successfult Com")
+                    logging.info("Successfult Communication")
                     frame_length = struct.unpack('>H', data[2:4])[0]
                     pm1_0 = struct.unpack('>H', data[10:12])[0]  # PM1.0
                     pm2_5 = struct.unpack('>H', data[12:14])[0]  # PM2.5
