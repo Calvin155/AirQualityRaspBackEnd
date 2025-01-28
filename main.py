@@ -2,6 +2,7 @@ from Sensors.particulate_matter import PM7003Sensor
 from Database.influxdb import InfluxDB
 import time
 import random
+import logging
 
 influx_db = InfluxDB()
 pm_sensor = PM7003Sensor()
@@ -13,7 +14,7 @@ def mock_co2_data():
         humidity = random.randint(50,60)
         influx_db.write_co2_temp_hum_data(co2, temp, humidity)
     except Exception as e:
-        print(e)
+        logging.error(e)
 
 def full_mock():
     # For testing without raspberry pi locally
@@ -33,22 +34,22 @@ def full_mock():
                 influx_db.write_pm_data(random_number_one_pm + count, random_number_two_pm + count, random_number_three_pm + count)
                 influx_db.write_co2_temp_hum_data(co2, temp, humidity)
                 count = count + 2
-                print("Success")
+                logging.info("Success")
                 if count == 10:
                     count = count - 10
                 time.sleep(10)
             except Exception as e:
-                print("Exception: " + e)
+                logging.error("Exception: " + e)
     except Exception as e:
-        print(e)
+        logging.error(e)
 
 # Main Entry Point
 while True:
     try:
+        time.sleep(15)
         pm_sensor.read_data()
         mock_co2_data()
-        time.sleep(15)
     except Exception as e:
-        print("Exception: " + e)
+        logging.error("Exception: " + e)
 
 
