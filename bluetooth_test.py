@@ -23,5 +23,4 @@ async def run():
         else:
             print(f"Skipping device: {device.name}")
 
-if __name__ == "__main__":
-    asyncio.run(run())
+run()
