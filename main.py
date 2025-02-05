@@ -1,11 +1,11 @@
-# from Sensors.particulate_matter import PM7003Sensor
+from Sensors.particulate_matter import PM7003Sensor
 from Database.influxdb import InfluxDB
 import time
 import random
 import logging
 
 influx_db = InfluxDB()
-# pm_sensor = PM7003Sensor()
+pm_sensor = PM7003Sensor()
 
 def mock_co2_data():
     try:
@@ -47,9 +47,9 @@ def full_mock():
 # Main Entry Point
 while True:
     try:
-        # pm_sensor.read_data()
-        # mock_co2_data()
-        full_mock()
+        pm_sensor.read_data()
+        mock_co2_data()
+        # full_mock()
         time.sleep(15)
     except Exception as e:
         print(f"Exception in main loop: {e}")
