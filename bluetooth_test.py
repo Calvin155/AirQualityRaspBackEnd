@@ -1,42 +1,27 @@
-import time
-import random
-import bluetooth
+import asyncio
+from bleak import BleakClient, BleakScanner
 
-def full_mock(client_socket):
-    try:
+IPHONE_BLE_ADDRESS = "XX:XX:XX:XX:XX:XX" 
+CHARACTERISTIC_UUID = "00001801-0000-1000-8000-00805f9b34fb"
 
-        while True:
-            random_number_one_pm = random.randint(0, 30)
-            random_number_two_pm = random.randint(30, 49)
-            random_number_three_pm = random.randint(50, 75)
-            co2 = random.randint(15, 20)
-            temp = random.randint(9, 12)
-            humidity = random.randint(50, 60)
+async def run():
+    print("Scanning for devices...")
+    devices = await BleakScanner.discover()
 
-            data = f"PM1: {random_number_one_pm} µg/m³, PM2.5: {random_number_two_pm} µg/m³, PM10: {random_number_three_pm} µg/m³, CO2: {co2} ppm, Temp: {temp}°C, Humidity: {humidity}%"
-            
-            client_socket.send(data)
-            print("Sent data:", data)
-            
-            time.sleep(10)
+    for device in devices:
+        print(f"Found device: {device.name} ({device.address})")
+        if device.address == IPHONE_BLE_ADDRESS:
+            print(f"Found iPhone, connecting to {device.name}...")
+            async with BleakClient(device.address) as client:
+                print(f"Connected: {client.is_connected}")
+                try:
+                    value = await client.read_gatt_char(CHARACTERISTIC_UUID)
+                    print(f"Received data: {value}")
+                except Exception as e:
+                    print(f"Error reading characteristic: {e}")
+                break 
+        else:
+            print(f"Skipping device: {device.name}")
 
-    except Exception as e:
-        print(f"Error: {str(e)}")
-
-def start_bluetooth_server():
-    server_socket = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-    server_socket.bind(("", bluetooth.PORT_ANY))
-    server_socket.listen(1)
-    
-    print("Waiting for connection...")
-    
-    client_socket, client_address = server_socket.accept()
-    print(f"Accepted connection from {client_address}")
-    
-    full_mock(client_socket)
-    
-    client_socket.close()
-    server_socket.close()
-
-
-start_bluetooth_server()
+if __name__ == "__main__":
+    asyncio.run(run())
