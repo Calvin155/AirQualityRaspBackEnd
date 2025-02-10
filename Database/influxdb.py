@@ -8,7 +8,7 @@ import os
 # Local IP address - Database stored on my laptop
 # For Local dev/testing
 # Change IP address if want raspberry pi to write to local db db on dev machine
-URL = "http://localhost:8086"
+URL = "http://172.17.0.2:8086"
 # TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 
 # URL="http://127.0.0.1:8086"
