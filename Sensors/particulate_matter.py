@@ -4,10 +4,15 @@ from Database.influxdb import InfluxDB
 import logging
 
 class PM7003Sensor:
-    def __init__(self, serial_port='/dev/serial0', baudrate=9600):
-        self.serial_port = serial_port
+    def __init__(self, baudrate=9600):
+        self.serial_port = '/dev/ttyAMA0'
         self.baudrate = baudrate
-        self.ser = serial.Serial(self.serial_port, self.baudrate, timeout=10)
+        try:
+            self.ser = serial.Serial(self.serial_port, self.baudrate, timeout=10)
+            print(f"Connected to {self.serial_port} at {self.baudrate} baudrate.")
+        except serial.SerialException as e:
+            print(f"Error opening serial port {self.serial_port}: {e}")
+            self.ser = None
 
     def read_data(self):
         try:
