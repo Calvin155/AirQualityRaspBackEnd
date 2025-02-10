@@ -8,10 +8,10 @@ import os
 # Local IP address - Database stored on my laptop
 # For Local dev/testing
 # Change IP address if want raspberry pi to write to local db db on dev machine
-# URL = "http://192.168.1.47:8086"
+URL = "http://localhost:8086"
 # TOKEN = "BocuA2JSjjFDITXknBnL9E1X4ADJoNEkJe5IrvNisBSfutGqSOvDZ8EZUccUo76Oc-WBsw-HM2PF9BWGH8VdhQ=="
 
-URL="http://127.0.0.1:8086"
+# URL="http://127.0.0.1:8086"
 TOKEN="7KoJpNuWfJmldZL5-VhLyHQYk-i97ttvJ29Dep0fJ85yJv89_uB0FabyBXMN7x_-hRV7vvDZHSsRw2PTHW14cg=="
 ORG="AQI"
 BUCKET="AQIMetrics"

@@ -29,6 +29,7 @@ def full_mock():
             co2 = random.randint(15, 20)
             temp = random.randint(9, 12)
             humidity = random.randint(50, 60)
+            print("Entered While Loop")
 
             try:
                 influx_db.write_pm_data(random_number_one_pm + count, random_number_two_pm + count, random_number_three_pm + count)
@@ -47,9 +48,10 @@ def full_mock():
 # Main Entry Point
 while True:
     try:
+        print("Starting")
         pm_sensor.read_data()
         mock_co2_data()
-        # full_mock()
+        print("Success")
         time.sleep(15)
     except Exception as e:
         print(f"Exception in main loop: {e}")
