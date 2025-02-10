@@ -14,7 +14,7 @@ def mock_co2_data():
         humidity = random.randint(50,60)
         influx_db.write_co2_temp_hum_data(co2, temp, humidity)
     except Exception as e:
-        logging.error(e)
+        print(e)
 
 
 # Main Entry Point

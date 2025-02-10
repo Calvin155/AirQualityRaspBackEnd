@@ -26,20 +26,19 @@ class InfluxDB:
         self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
         self.write_api = self.client.write_api(write_options=SYNCHRONOUS)
         self.query_api = self.client.query_api()
-        print("DB Connected")
 
     def connect(self):
         try:
             if self.client:
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
-                logging.info("Successfully Connected to Influx Database")
+                print("Successfully Connected to Influx Database")
                 print("Successfully connected to Influx")
             else:
-                logging.info("Already connected to Influx Database")
+                print("Already connected to Influx Database")
                 print("Already connected to Influx")
 
         except Exception as e:
-            logging.error("Error Connecting to Database: " + str(e))
+            print("Error Connecting to Database: " + str(e))
 
 
 
@@ -51,9 +50,9 @@ class InfluxDB:
                 "fields": fields
             }
             self.write_api.write(bucket=self.bucket, record=point)
-            logging.info("Data Written Successfully to Database")
+            print("Data Written Successfully to Database")
         except Exception as e:
-            logging.error("Error Writing Data to Database")
+            print("Error Writing Data to Database")
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
@@ -69,7 +68,7 @@ class InfluxDB:
                 "time": timestamp
             }
             self.write_api.write(bucket=self.bucket, record=point)
-            logging.info("Data Written Successfully to Database")
+            print("Data Written Successfully to Database")
         except Exception as e:
             print("Error writing data to Database" + e)
 
@@ -87,11 +86,11 @@ class InfluxDB:
                 "time": timestamp
             }
             self.write_api.write(bucket=self.bucket, record=point)
-            logging.info("CO2, Temp & Humidity Data Written Successfully to Database")
+            print("CO2, Temp & Humidity Data Written Successfully to Database")
         except Exception as e:
             print("Error writing data to Database - CO2 Sensor" + e)
 
     def close(self):
         if self.client:
             self.client.close()
-            logging.info("Connection to Database Closed")
+            print("Connection to Database Closed")

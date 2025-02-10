@@ -38,4 +38,4 @@ class PM7003Sensor:
     def close_connection(self):
         if self.ser.is_open:
             self.ser.close()
-            logging.info("Connection Closed")
+            print("Connection Closed")
