@@ -34,7 +34,7 @@ class InfluxDB:
                 print("Successfully Connected to Influx Database")
                 print("Successfully connected to Influx")
             else:
-                logging.info("Already connected to Influx Database")
+                print("Already connected to Influx Database")
                 print("Already connected to Influx")
 
         except Exception as e:
@@ -93,4 +93,4 @@ class InfluxDB:
     def close(self):
         if self.client:
             self.client.close()
-            logging.info("Connection to Database Closed")
+            print("Connection to Database Closed")

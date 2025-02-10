@@ -29,12 +29,12 @@ class PM7003Sensor:
                     print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10}")
 
             else:
-                logging.error("Error Reading Data off PMS7003")
+                print("Error Reading Data off PMS7003")
 
         except Exception as e:
-            logging.error("Error - PM Sensor: " + e)
+            print("Error - PM Sensor: " + e)
 
     def close_connection(self):
         if self.ser.is_open:
             self.ser.close()
-            logging.info("Connection Closed")
+            print("Connection Closed")
