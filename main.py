@@ -48,6 +48,7 @@ def full_mock():
 # Main Entry Point
 while True:
     try:
+        time.sleep(30)
         print("Starting")
         pm_sensor.read_data()
         mock_co2_data()
