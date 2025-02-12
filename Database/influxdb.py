@@ -60,8 +60,9 @@ class InfluxDB:
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
             if self.connected():
+                print("Step 4 - Conected to database")
                 timestamp = datetime.utcnow().isoformat()
-                print("Time Stamp next")
+                print("Step 5 Creating time Stamp in pm function")
                 print(timestamp)
                 point = {
                     "measurement": "air_quality",
@@ -73,9 +74,9 @@ class InfluxDB:
                     },
                     "time": timestamp
                 }
-                print("Just About to write pm data")
+                print("Step 6 Just About to write pm data")
                 self.write_api.write(bucket=self.bucket, record=point)
-                print("Data Written Successfully to Database")
+                print("Step 7 - Data Written Successfully to Database")
             else:
                 print("Cant Connect")
         except Exception as e:
@@ -84,7 +85,9 @@ class InfluxDB:
     def write_co2_temp_hum_data(self, co2, temp, humidity):
         try:
             if self.connected():
+                print("Step 4 - connected to db - co2")
                 timestamp = datetime.utcnow().isoformat()
+                print("Step 5 - time stamp")
                 print(timestamp)
                 point = {
                     "measurement": "air_quality",
@@ -96,8 +99,9 @@ class InfluxDB:
                     },
                     "time": timestamp
                 }
+                print("Step 6 - Just aboput to write CO2")
                 self.write_api.write(bucket=self.bucket, record=point)
-                print("CO2, Temp & Humidity Data Written Successfully to Database")
+                print(" step 7 CO2, Temp & Humidity Data Written Successfully to Database")
             else:
                 print("Cant Connect")
         except Exception as e:
