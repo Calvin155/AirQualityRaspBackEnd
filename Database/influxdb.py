@@ -72,6 +72,7 @@ class InfluxDB:
                     },
                     "time": timestamp
                 }
+                print("Just About to write pm data")
                 self.write_api.write(bucket=self.bucket, record=point)
                 print("Data Written Successfully to Database")
             else:
