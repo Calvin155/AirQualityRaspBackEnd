@@ -32,7 +32,7 @@ class InfluxDB:
                 print("Already connected to Influx")
 
         except Exception as e:
-            print("Error Connecting to Database: " + str(e))
+            print("Error Connecting to Database: ", str(e))
 
     def connected(self):
         try:
@@ -61,6 +61,7 @@ class InfluxDB:
         try:
             if self.connected():
                 timestamp = datetime.utcnow().isoformat()
+                print(timestamp)
                 point = {
                     "measurement": "air_quality",
                     "tags": {"location": "local"},
@@ -76,12 +77,13 @@ class InfluxDB:
             else:
                 print("Cant Connect")
         except Exception as e:
-            print("Error writing data to Database" + e)
+            print("Error writing data to Database", str(e))
 
     def write_co2_temp_hum_data(self, co2, temp, humidity):
         try:
             if self.connected():
                 timestamp = datetime.utcnow().isoformat()
+                print(timestamp)
                 point = {
                     "measurement": "air_quality",
                     "tags": {"location": "local"},
@@ -97,7 +99,7 @@ class InfluxDB:
             else:
                 print("Cant Connect")
         except Exception as e:
-            print("Error writing data to Database - CO2 Sensor" + e)
+            print("Error writing data to Database - CO2 Sensor", str(e))
 
     def close(self):
         if self.client:

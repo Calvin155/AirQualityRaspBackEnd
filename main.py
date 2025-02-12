@@ -19,11 +19,8 @@ def mock_co2_data():
 # Main Entry Point
 while True:
     try:
-        print("Starting Pm data")
         pm_sensor.read_data()
-        print("Starting mock data")
         mock_co2_data()
-        print("Success")
         time.sleep(15)
     except Exception as e:
         print(f"Exception in main loop: {e}")
