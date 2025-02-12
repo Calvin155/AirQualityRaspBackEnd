@@ -61,6 +61,7 @@ class InfluxDB:
         try:
             if self.connected():
                 timestamp = datetime.utcnow().isoformat()
+                print("Time Stamp next")
                 print(timestamp)
                 point = {
                     "measurement": "air_quality",
