@@ -6,7 +6,7 @@ import os
 
 # Database connections
 URL = "http://54.78.60.93:8086"
-TOKEN="qruPaRZKndPrV0KmRv3Yy4EuHDqnyU9m_kpYrEdbM93mqMth_JCvko7w6up56-5gO_-YieDBAkpKaK3ZPWnrvA=="
+TOKEN="BuCaDsBU6ZVF_stT2gxyyQ_in6h5gBhPpeukPMeF4tHrGD4tCPhldQE2fhm709RAtmbaxOb7eINqWxqyRosDPg=="
 ORG="AQI"
 BUCKET="AQIMetrics"
 
