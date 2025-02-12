@@ -25,7 +25,7 @@ class PM7003Sensor:
                     pm2_5 = struct.unpack('>H', data[12:14])[0]  # PM2.5
                     pm10 = struct.unpack('>H', data[14:16])[0]    # PM10
                     print("Step 3 Just about to Write Sensor Data")
-                    influx_db.write_pm_data(str(pm1_0),str(pm2_5),str(pm10))
+                    influx_db.write_pm_data(pm1_0,pm2_5,pm10)
                     print(f"Particulate Matter 1.0: {pm1_0}, Particulate Matter 2.5: {pm2_5}, Particulate Matter 10: {pm10}")
 
             else:
