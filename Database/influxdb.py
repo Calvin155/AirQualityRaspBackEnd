@@ -46,38 +46,48 @@ class InfluxDB:
 
 
     def write_data(self, measurement, tags, fields):
-        try:
-            point = {
-                "measurement": measurement,
-                "tags": tags,
-                "fields": fields
-            }
-            self.write_api.write(bucket=self.bucket, record=point)
-            print("Data Written Successfully to Database")
-        except Exception as e:
-            print("Error Writing Data to Database")
+            try:
+                point = {
+                    "measurement": measurement,
+                    "tags": tags,
+                    "fields": fields
+                }
+                self.write_api.write(bucket=self.bucket, record=point)
+                print("Data Written Successfully to Database")
+            except Exception as e:
+                print("Error Writing Data to Database")
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
-            print("Step 4 - Conected to database")
+            print("Step 4 - Connected to database")
+            
+            pm1 = float(pm1)
+            pm2_5 = float(pm2_5)
+            pm10 = float(pm10)
+
             timestamp = datetime.utcnow().isoformat()
-            print("Step 5 Creating time Stamp in pm function")
+            print("Step 5 - Creating timestamp in PM function")
             print(timestamp)
+
             point = {
                 "measurement": "air_quality",
                 "tags": {"location": "local"},
                 "fields": {
-                    "PM1": round(pm1,2),
-                    "PM2.5": round(pm2_5,2),
-                    "PM10": round(pm10,2)
+                    "PM1": round(pm1, 2),
+                    "PM2.5": round(pm2_5, 2),
+                    "PM10": round(pm10, 2)
                 },
                 "time": timestamp
             }
-            print("Step 6 Just About to write pm data")
+
+            print("Step 6 - Just about to write PM data")
             self.write_api.write(bucket=self.bucket, record=point)
-            print("Step 7 - Data Written Successfully to Database")
+            print("Step 7 - Data written successfully to database")
+
+        except ValueError as ve:
+            print("Error: Non-numeric data provided:", str(ve))
         except Exception as e:
-            print("Error writing data to Database", str(e))
+            print("Error writing data to Database:", str(e))
 
     def write_co2_temp_hum_data(self, co2, temp, humidity):
         try:
