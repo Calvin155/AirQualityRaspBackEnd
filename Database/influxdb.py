@@ -67,7 +67,6 @@ class InfluxDB:
 
             timestamp = datetime.utcnow().isoformat()
             print("Step 5 - Creating timestamp in PM function")
-            print(timestamp)
 
             point = {
                 "measurement": "air_quality",
@@ -99,9 +98,9 @@ class InfluxDB:
                 "measurement": "air_quality",
                 "tags": {"location": "local"},
                 "fields": {
-                    "CO2": round(co2,2),
-                    "Temperature": round(temp,2),
-                    "Humidity": round(humidity,2)
+                    "CO2": co2,
+                    "Temperature": temp,
+                    "Humidity": humidity
                 },
                 "time": timestamp
             }
