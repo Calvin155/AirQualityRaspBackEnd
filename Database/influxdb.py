@@ -36,7 +36,7 @@ class InfluxDB:
 
     def connected(self):
         try:
-            if self.client.ping():
+            if self.client.ping() == 200:
                 print("Connected & Pinging")
             else:
                 print("No Joy")
@@ -59,7 +59,7 @@ class InfluxDB:
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
-            if self.connected():
+            if self.connected() == True:
                 print("Step 4 - Conected to database")
                 timestamp = datetime.utcnow().isoformat()
                 print("Step 5 Creating time Stamp in pm function")
