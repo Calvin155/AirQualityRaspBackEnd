@@ -38,8 +38,10 @@ class InfluxDB:
         try:
             if self.client.ping() == 200:
                 print("Connected & Pinging")
+                return True
             else:
                 print("No Joy")
+                return False
         except Exception as e:
             print(e)
 
