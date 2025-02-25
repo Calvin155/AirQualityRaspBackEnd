@@ -13,6 +13,9 @@ class PM7003Sensor:
         except serial.SerialException as e:
             print(e)
 
+    def is_connected(self):
+        return self.ser is not None and self.ser.is_open
+    
     def read_data(self):
         try:
             influx_db = InfluxDB()

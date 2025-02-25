@@ -4,28 +4,24 @@ import time
 import random
 import logging
 
-influx_db = InfluxDB()
-pm_sensor = PM7003Sensor()
-
-def mock_co2_data():
-    try:
-        co2 = random.randint(15,20)
-        temp = random.randint(9,12)
-        humidity = random.randint(50,60)
-        influx_db.write_co2_temp_hum_data(co2, temp, humidity)
-    except Exception as e:
-        print(e)
-
-# Main Entry Point
 while True:
     try:
-        print("Step 1")
-        pm_sensor.read_data()
-        mock_co2_data()
-        print("Step Final")
-        time.sleep(15)
+        influx_db = InfluxDB()
+        pm_sensor = PM7003Sensor()
+
+        if influx_db.connected() and pm_sensor.is_connected():
+            print("Step 1")
+            pm_sensor.read_data()
+            print("Step Final")
+            time.sleep(15)
+        else:
+            print("Database or sensor not connected. Retrying in 5 seconds...")
+            time.sleep(5)
+
     except Exception as e:
         print(f"Exception in main loop: {e}")
+        time.sleep(5)
+
 
 
 
