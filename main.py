@@ -15,6 +15,7 @@ while True:
             time.sleep(15)
         else:
             pm_sensor = PM7003Sensor()
+            influx_db = InfluxDB()
     except Exception as e:
         print(f"Exception in main loop: " + e)
 
