@@ -5,9 +5,9 @@ import random
 import logging
 
 # Main Entry Point
+time.sleep(20)
 while True:
     try:
-        time.sleep(20)
         pm_sensor = PM7003Sensor()
         influx_db = InfluxDB()
         if pm_sensor.is_connected:
