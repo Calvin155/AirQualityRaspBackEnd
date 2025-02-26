@@ -4,11 +4,11 @@ import time
 import random
 import logging
 
-time.sleep(20)
-pm_sensor = PM7003Sensor()
 # Main Entry Point
 while True:
     try:
+        time.sleep(20)
+        pm_sensor = PM7003Sensor()
         influx_db = InfluxDB()
         if pm_sensor.is_connected:
             pm_sensor.read_data()
@@ -16,7 +16,7 @@ while True:
         else:
             pm_sensor = PM7003Sensor()
     except Exception as e:
-        print(f"Exception in main loop: {e}")
+        print(f"Exception in main loop: " + e)
 
 
 

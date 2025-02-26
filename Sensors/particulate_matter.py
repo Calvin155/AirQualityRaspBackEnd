@@ -18,14 +18,16 @@ class PM7003Sensor:
     
     def read_data(self):
         try:
+            print("Connecting To DB")
             influx_db = InfluxDB()
+            print("Writing To DB 2")
             if self.ser.readable():
                 data = self.ser.read(32)
                 if data[0] == 0x42 and data[1] == 0x4D:
-                    frame_length = struct.unpack('>H', data[2:4])[0]
                     pm1_0 = struct.unpack('>H', data[10:12])[0]
                     pm2_5 = struct.unpack('>H', data[12:14])[0]
                     pm10 = struct.unpack('>H', data[14:16])[0]
+                    print("Writing To DB")
                     influx_db.write_pm_data(pm1_0,pm2_5,pm10)
 
             else:
