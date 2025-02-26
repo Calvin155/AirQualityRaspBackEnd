@@ -21,15 +21,12 @@ class PM7003Sensor:
             influx_db = InfluxDB()
             if self.ser.readable():
                 data = self.ser.read(32)
-                print("Step 2 Connected to Sensor data & Got PM data")
                 if data[0] == 0x42 and data[1] == 0x4D:
                     frame_length = struct.unpack('>H', data[2:4])[0]
-                    pm1_0 = struct.unpack('>H', data[10:12])[0]  # PM1.0
-                    pm2_5 = struct.unpack('>H', data[12:14])[0]  # PM2.5
-                    pm10 = struct.unpack('>H', data[14:16])[0]    # PM10
-                    print("Step 3 Just about to Write Sensor Data")
+                    pm1_0 = struct.unpack('>H', data[10:12])[0]
+                    pm2_5 = struct.unpack('>H', data[12:14])[0]
+                    pm10 = struct.unpack('>H', data[14:16])[0]
                     influx_db.write_pm_data(pm1_0,pm2_5,pm10)
-                    print(f"DEBUG: PM1: {pm1} ({type(pm1)}), PM2.5: {pm2_5} ({type(pm2_5)}), PM10: {pm10} ({type(pm10)})")
 
             else:
                 print("Error Reading Data off PMS7003")

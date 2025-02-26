@@ -61,15 +61,11 @@ class InfluxDB:
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
-            print("Step 4 - Connected to database")
-            
             pm1 = float(pm1)
             pm2_5 = float(pm2_5)
             pm10 = float(pm10)
 
             timestamp = datetime.utcnow().isoformat()
-            print("Step 5 - Creating timestamp in PM function")
-
             point = {
                 "measurement": "air_quality",
                 "tags": {"location": "local"},
@@ -81,12 +77,7 @@ class InfluxDB:
                 "time": timestamp
             }
 
-            print("Step 6 - Just about to write PM data")
             self.write_api.write(bucket=self.bucket, record=point)
-            print("Step 7 - Data written successfully to database")
-
-        except ValueError as ve:
-            print("Error: Non-numeric data provided:", str(ve))
         except Exception as e:
             print("Error writing data to Database:", str(e))
 
