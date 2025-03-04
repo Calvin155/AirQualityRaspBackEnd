@@ -15,8 +15,6 @@ serial = ">=0.0.97,<0.0.98"
 logging = ">=0.4.9.6,<0.5.0.0"
 reactivex = ">=4.0.4"
 influxdb-client = "^1.48.0"
-sensirion-i2c-driver = "^1.0.0"
-sensirion-i2c-scd = "^0.1.2"
 pyserial = "^3.5"
 
 [build-system]
