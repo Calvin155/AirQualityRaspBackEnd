@@ -2,7 +2,7 @@ from Sensors.particulate_matter import PM7003Sensor
 import time
 import logging
 
-# Main Entry Point
+# Main Entry
 time.sleep(20)
 while True:
     try:
