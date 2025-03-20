@@ -4,17 +4,16 @@ from datetime import datetime
 import logging
 import os
 
-# Database connections
-URL = "http://18.201.230.235:8086"
-TOKEN="_NaX4deSsnKPA6cbcwVqx-G16p_M5ed3tJR-4JYZMBUnJq2pNQWQ7Pz_Mtjq-82oI79pvPiqDMeJ-jPtsfQlmg=="
+INFLUXDB_URL = os.getenv("INFLUXDB_URL")
+INFLUXDB_TOKEN = os.getenv("INFLUXDB_TOKEN")
 ORG="AQI"
 BUCKET="AQIMetrics"
 
 
 class InfluxDB:
     def __init__(self):
-        self.url = URL
-        self.token = TOKEN
+        self.url = INFLUXDB_URL
+        self.token = INFLUXDB_TOKEN
         self.org = ORG
         self.bucket = BUCKET
         self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
