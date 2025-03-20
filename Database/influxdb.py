@@ -5,8 +5,8 @@ import logging
 import os
 
 # Database connections
-URL = "http://52.212.232.158:8086"
-TOKEN="BuCaDsBU6ZVF_stT2gxyyQ_in6h5gBhPpeukPMeF4tHrGD4tCPhldQE2fhm709RAtmbaxOb7eINqWxqyRosDPg=="
+URL = "http://18.201.230.235:8086"
+TOKEN="_NaX4deSsnKPA6cbcwVqx-G16p_M5ed3tJR-4JYZMBUnJq2pNQWQ7Pz_Mtjq-82oI79pvPiqDMeJ-jPtsfQlmg=="
 ORG="AQI"
 BUCKET="AQIMetrics"
 
