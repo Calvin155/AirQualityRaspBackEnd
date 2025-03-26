@@ -10,6 +10,7 @@ class TestPM7003Sensor(unittest.TestCase):
     @patch('serial.Serial')
     def test_init_success(self, MockSerial):
         mock_serial_instance = MagicMock()
+        mock_serial_instance.open.return_value = None
         MockSerial.return_value = mock_serial_instance
         sensor = PM7003Sensor()
         mock_serial_instance.open.assert_called_once()
