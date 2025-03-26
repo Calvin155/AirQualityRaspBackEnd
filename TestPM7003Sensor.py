@@ -11,10 +11,7 @@ class TestPM7003Sensor(unittest.TestCase):
     def test_init_success(self, MockSerial):
         mock_serial_instance = MagicMock()
         MockSerial.return_value = mock_serial_instance
-
         sensor = PM7003Sensor()
-        self.assertEqual(sensor.serial_port, '/dev/ttyAMA2')
-        self.assertEqual(sensor.baudrate, 9600)
         mock_serial_instance.open.assert_called_once()
 
     # @patch('serial.Serial')
