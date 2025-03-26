@@ -80,14 +80,14 @@ class TestPM7003Sensor(unittest.TestCase):
     #     sensor = PM7003Sensor()
     #     self.assertTrue(sensor.is_connected())
 
-    # @patch('serial.Serial')
-    # def test_is_connected_false(self, MockSerial):
-    #     mock_serial_instance = MagicMock()
-    #     MockSerial.return_value = mock_serial_instance
-    #     mock_serial_instance.is_open = False
+    @patch('serial.Serial')
+    def test_is_connected_false(self, MockSerial):
+        mock_serial_instance = MagicMock()
+        MockSerial.return_value = mock_serial_instance
+        mock_serial_instance.is_open = False
 
-    #     sensor = PM7003Sensor()
-    #     self.assertFalse(sensor.is_connected())
+        sensor = PM7003Sensor()
+        self.assertFalse(sensor.is_connected())
 
 
 if __name__ == '__main__':
