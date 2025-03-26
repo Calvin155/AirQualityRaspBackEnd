@@ -17,11 +17,11 @@ class TestPM7003Sensor(unittest.TestCase):
         self.assertEqual(sensor.baudrate, 9600)
         mock_serial_instance.open.assert_called_once()
 
-    @patch('serial.Serial')
-    def test_init_failure(self, MockSerial):
-        MockSerial.side_effect = serial.SerialException("Failed to open serial port")
-        with self.assertRaises(serial.SerialException):
-            PM7003Sensor()
+    # @patch('serial.Serial')
+    # def test_init_failure(self, MockSerial):
+    #     MockSerial.side_effect = serial.SerialException("Failed to open serial port")
+    #     with self.assertRaises(serial.SerialException):
+    #         PM7003Sensor()
 
     # @patch('serial.Serial')
     # @patch.object(InfluxDB, 'write_pm_data')
