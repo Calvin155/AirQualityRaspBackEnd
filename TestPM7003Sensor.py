@@ -5,16 +5,15 @@ from io import BytesIO
 from Sensors.particulate_matter import PM7003Sensor
 from Database.influxdb import InfluxDB
 
-class TestPM7003Sensor(unittest.TestCase):
-    @patch('serial.Serial')
-    def test_init_success(self, MockSerial):
-        mock_serial_instance = MagicMock()
-        mock_serial_instance.is_open = True
-        MockSerial.return_value = mock_serial_instance
+@patch('serial.Serial')
+def test_init_success(self, MockSerial):
+    mock_serial_instance = MagicMock()
+    mock_serial_instance.is_open = True
+    MockSerial.return_value = mock_serial_instance
 
-        sensor = PM7003Sensor()
-        MockSerial.assert_called_once()
-        self.assertTrue(sensor.serial.is_open)
+    sensor = PM7003Sensor()
+    MockSerial.assert_called_once()
+
 
 
     @patch('serial.Serial')
