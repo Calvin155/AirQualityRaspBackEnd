@@ -12,14 +12,18 @@ class TestPM7003Sensor(unittest.TestCase):
         mock_serial_instance.is_open = True
         MockSerial.return_value = mock_serial_instance
         sensor = PM7003Sensor()
+
+        # Check if the serial port is open
         MockSerial.assert_called_once()
-        self.assertTrue(sensor.serial.is_open)
+        self.assertTrue(sensor.ser.is_open)
+
 
     @patch('serial.Serial')
     def test_init_failure(self, MockSerial):
         MockSerial.side_effect = serial.SerialException("Failed to open serial port")
         with self.assertRaises(serial.SerialException):
             PM7003Sensor()
+
 
     @patch('serial.Serial')
     def test_is_connected_false(self, MockSerial):

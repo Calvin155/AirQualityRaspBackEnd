@@ -11,7 +11,9 @@ class PM7003Sensor:
             self.ser = serial.Serial(self.serial_port, self.baudrate, timeout=10)
             print(f"Connected to {self.serial_port} at {self.baudrate} baudrate.")
         except serial.SerialException as e:
-            print(e)
+            print(f"Failed to open serial port: {e}")
+            raise e 
+
 
     def is_connected(self):
         return self.ser is not None and self.ser.is_open
