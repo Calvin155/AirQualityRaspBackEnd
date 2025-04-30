@@ -24,25 +24,23 @@ class InfluxDB:
         try:
             if self.client:
                 self.client = InfluxDBClient(url=self.url, token=self.token, org=self.org)
-                print("Successfully Connected to Influx Database")
-                print("Successfully connected to Influx")
+                logging.info("Successfully Connected to Influx Database")
             else:
-                print("Already connected to Influx Database")
-                print("Already connected to Influx")
+                logging.info("Already connected to Influx Database")
 
         except Exception as e:
-            print("Error Connecting to Database: ", str(e))
+            logging.error("Error Connecting to Database: ", str(e))
 
     def connected(self):
         try:
             if self.client.ping() == 200:
-                print("Connected & Pinging")
+                logging.info("Connected & Pinging")
                 return True
             else:
-                print("No Joy")
+                logging.info("Not Connected")
                 return False
         except Exception as e:
-            print(e)
+            logging.error(e)
 
 
 
@@ -54,9 +52,9 @@ class InfluxDB:
                     "fields": fields
                 }
                 self.write_api.write(bucket=self.bucket, record=point)
-                print("Data Written Successfully to Database")
+                logging.info("Data Written Successfully to Database")
             except Exception as e:
-                print("Error Writing Data to Database")
+                logging.error("Error Writing Data to Database")
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
@@ -78,14 +76,12 @@ class InfluxDB:
 
             self.write_api.write(bucket=self.bucket, record=point)
         except Exception as e:
-            print("Error writing data to Database:", str(e))
+            logging.error("Error writing data to Database:", str(e))
 
     def write_co2_temp_hum_data(self, co2, temp, humidity):
         try:
-            print("Step 4 - connected to db - co2")
             timestamp = datetime.utcnow().isoformat()
-            print("Step 5 - time stamp")
-            print(timestamp)
+            logging.info(timestamp)
             point = {
                 "measurement": "air_quality",
                 "tags": {"location": "local"},
@@ -96,13 +92,12 @@ class InfluxDB:
                 },
                 "time": timestamp
             }
-            print("Step 6 - Just aboput to write CO2")
             self.write_api.write(bucket=self.bucket, record=point)
-            print(" step 7 CO2, Temp & Humidity Data Written Successfully to Database")
+            logging.info("Successfully wrote data to Database")
         except Exception as e:
-            print("Error writing data to Database - CO2 Sensor", str(e))
+            logging.error("Error writing data to Database - CO2 Sensor", str(e))
 
     def close(self):
         if self.client:
             self.client.close()
-            print("Connection to Database Closed")
+            logging.info("Connection to Database Closed")
