@@ -11,7 +11,7 @@ class PM7003Sensor:
             self.ser = serial.Serial(self.serial_port, self.baudrate, timeout=10)
             logging.info(f"Connected to {self.serial_port} at {self.baudrate} baudrate.")
         except serial.SerialException as e:
-            logging.error(f"Failed to open serial port: {e}")
+            logging.exception(f"Failed to open serial port: {e}")
             raise e 
 
 
@@ -36,7 +36,7 @@ class PM7003Sensor:
                 logging.error("Error Reading Data off PMS7003")
 
         except Exception as e:
-            logging.error("Error - PM Sensor: " + e)
+            logging.exception("Error - PM Sensor: " + e)
 
     def close_connection(self):
         if self.ser.is_open:

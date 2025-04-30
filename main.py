@@ -12,9 +12,10 @@ while True:
             logging.info("Data Successfully Read and written to Influx DB")
             time.sleep(15)
         else:
+            logging.info("PMS7003 sensor failed to connect - Re-Attempting")
             pm_sensor = PM7003Sensor()
     except Exception as e:
-        logging.error(f"Exception in main loop: {e}")
+        logging.exception(f"Exception in main loop: {e}")
 
 
 

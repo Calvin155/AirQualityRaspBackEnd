@@ -29,7 +29,7 @@ class InfluxDB:
                 logging.info("Already connected to Influx Database")
 
         except Exception as e:
-            logging.error("Error Connecting to Database: ", str(e))
+            logging.exception("Error Connecting to Database: ", str(e))
 
     def connected(self):
         try:
@@ -40,7 +40,7 @@ class InfluxDB:
                 logging.info("Not Connected")
                 return False
         except Exception as e:
-            logging.error(e)
+            logging.exception(e)
 
 
 
@@ -54,7 +54,7 @@ class InfluxDB:
                 self.write_api.write(bucket=self.bucket, record=point)
                 logging.info("Data Written Successfully to Database")
             except Exception as e:
-                logging.error("Error Writing Data to Database")
+                logging.exception("Error Writing Data to Database")
 
     def write_pm_data(self, pm1, pm2_5, pm10):
         try:
@@ -76,7 +76,7 @@ class InfluxDB:
 
             self.write_api.write(bucket=self.bucket, record=point)
         except Exception as e:
-            logging.error("Error writing data to Database:", str(e))
+            logging.exception("Error writing data to Database:", str(e))
 
     def write_co2_temp_hum_data(self, co2, temp, humidity):
         try:
@@ -95,7 +95,7 @@ class InfluxDB:
             self.write_api.write(bucket=self.bucket, record=point)
             logging.info("Successfully wrote data to Database")
         except Exception as e:
-            logging.error("Error writing data to Database - CO2 Sensor", str(e))
+            logging.exception("Error writing data to Database - CO2 Sensor", str(e))
 
     def close(self):
         if self.client:
